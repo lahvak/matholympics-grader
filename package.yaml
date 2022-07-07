@@ -1,0 +1,77 @@
+name:                matholympics
+version:             0.1.0.0
+github:              "lahvak/matholympics"
+license:             BSD3
+author:              "Jan Hlavacek"
+maintainer:          "jhlavace@svsu.edu"
+copyright:           "2019 Jan Hlavacek"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Parse and grade math olympics results
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/githubuser/matholympics#readme>
+
+ghc-options: -Wall -Werror 
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+  exposed-modules:
+      - ScantronParser
+      - ScantronParser.Internal
+      - Levels
+      - Grader
+      - Grader.Internal
+      - StudentData
+      - StudentData.Internal
+      - Schools
+      - MCAFiles
+      - MCAFiles.Internal
+      - Sorting
+      - SchoolResults
+      - Reporting
+      - AppOptions
+  dependencies:
+      - bytestring
+      - text
+      - vector
+      - containers
+      - cassava
+      - HaTeX
+      - optparse-applicative
+      - filepath
+      - directory
+
+executables:
+  matholympics:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - matholympics
+
+tests:
+  matholympics-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - matholympics
+      - HUnit
+      - containers
+      - vector
