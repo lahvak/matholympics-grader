@@ -1,3 +1,4 @@
 .stack-work/
 matholympics.cabal
 *~
+stack.yaml.lock
